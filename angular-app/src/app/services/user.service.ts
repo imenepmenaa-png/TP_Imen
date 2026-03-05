@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, last } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from '../models/User';
 
 @Injectable({
@@ -8,8 +8,9 @@ import { User } from '../models/User';
 })
 export class UserService {
 
-  baseURL:string="http://192.168.187.9:8081/user"
-  constructor(private  httpClient:HttpClient) { }
+  baseURL:string="http://localhost:8081/user"  // ← corrigé !
+
+  constructor(private httpClient:HttpClient) { }
 
   getAllUsers():Observable<any>{
     let headers = new HttpHeaders();
@@ -30,4 +31,5 @@ export class UserService {
     headers.append("Access-Control-Allow-Origin", "*")
     return this.httpClient.post(url,body,{headers})
   }
+
 }
